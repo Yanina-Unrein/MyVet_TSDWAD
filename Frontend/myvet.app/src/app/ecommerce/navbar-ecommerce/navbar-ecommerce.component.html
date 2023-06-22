@@ -13,8 +13,14 @@
     </div>
     <div class="icon-navbar">
       <div>
-        <button class="btn-icon" (click)="redirigir()"><i class="bi bi-cart4"></i></button>
-        <span class="product-count">{{ cantidadProductos }}</span>
+        <div class="btn-carrito-ctn">
+          <button class="btn-icon" *ngIf="isLogged" (click)="redirigir()"><i class="bi bi-cart4"></i></button>
+          <span class="product-count" *ngIf="isLogged">{{ cantidadProductos }}</span>
+        </div>
+        <div>
+          <button class="btn-icon" *ngIf="!isLogged" [class.btn-logged]="isLogged" routerLink="/inicio-sesion"><i class="bi bi-cart4"></i></button>
+        </div>
+
       </div>
       <button class="btn-icon" [class.btn-logged]="isLogged" (click)="toggleMenu()"><i class="bi bi-person"></i></button>
       <div class="menu-container" *ngIf="showMenu">

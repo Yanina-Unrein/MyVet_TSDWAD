@@ -148,6 +148,9 @@
 
 .product-count{
     position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
     border: 1px solid #fff;
     border-radius: 100%;
     height: 1.5rem;
@@ -156,6 +159,12 @@
     text-align: center;
     /* padding: 5px; */
     background: blanchedalmond;
+}
+
+.btn-carrito-ctn{
+    position:relative;
+    width: 100%;
+    height: auto;
 }
 
 @media (min-width: 768px) {

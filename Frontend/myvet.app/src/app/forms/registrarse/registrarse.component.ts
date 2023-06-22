@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RegistroService } from 'src/servicios/registro.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrarse',
@@ -20,23 +21,12 @@ export class RegistrarseComponent {
     pass2: ['', Validators.required]
   })
 
-  /*{
-    "email": "pepitojuarez@gmail.com",
-    "password": "LinkinPark05$",
-    "nombre": "Carlos Gabriel",
-    "apellido": "Del Pont",
-    "telefono": null,
-    "dni": null,
-    "direccion": null,
-    "avatar": null
-} */
-
   enviado = false;
   valorPass: string | undefined | null;
   confirmacionInvalida = false;
   invalido = false;
 
-  constructor(private fb: FormBuilder, private rs: RegistroService) {}
+  constructor(private fb: FormBuilder, private rs: RegistroService, private router: Router) {}
 
   esInvalido(nombre: string) {
   return this.formRegistro.get(nombre)?.invalid &&
@@ -70,13 +60,12 @@ export class RegistrarseComponent {
       this.rs.registerUser(formFinal).subscribe({
       next: (res) => {
         this.invalido = false
-        console.log('Usuario creado correctamente. Respuesta: ', res)
+        setTimeout(() => this.router.navigate(['/inicio-sesion']), 1000 )
       },
       error: (err) => {
         this.invalido = true
         console.log(err)
-      },
-      complete: () => console.log('Trabajo terminado')
+      }
       })
     }
   }
